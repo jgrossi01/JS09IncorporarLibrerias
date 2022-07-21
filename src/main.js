@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   createLi();
   loadCards();
   loadExistingValues();
-
+  
   // Carga en el formulario el vehiculo seleccionado en las cards y redirige arriba 
   Array.from(rentItBtn).forEach(function(element) {
     element.addEventListener('click', () => { 
@@ -52,5 +52,9 @@ bookingForm.addEventListener("submit", formValidate);
 function nextIndexOf(array) {
   return array.length + 1;
 }
+
+
+
+
 
 export { nextIndexOf };

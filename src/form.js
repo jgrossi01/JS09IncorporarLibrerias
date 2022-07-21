@@ -1,6 +1,7 @@
 import { nextIndexOf } from "./main.js";
 import { arrayCars, arrayReservations, Reservation } from "./class.js";
 
+
 let finalQty;
 let finalTotal;
 
@@ -34,21 +35,77 @@ function formValidate(event) {
 
     if (!reserveThis) {
       errors.push("No encontramos el modelo solicitado");
+      Toastify({
+          text: "No encontramos el modelo solicitado",
+          duration: 3000,
+          stopOnFocus: true,
+          close: true,
+          style: {
+            background: "linear-gradient(90deg, rgba(163,27,15,1) 0%, rgba(255,98,0,1) 100%)",
+          },
+          offset: {
+            x: 300,
+            y: 30 
+          },
+          gravity: 'bottom'
+      }).showToast();
     }
   }
 
   if (!quantityInput || isNaN(quantityInput) || quantityInput < 1) {
     errors.push(`Ingrese una cantidad de vehiculos valida.`);
+    Toastify({
+        text: `Ingrese una cantidad de vehiculos valida.`,
+        duration: 3000,
+        stopOnFocus: true,
+        close: true,
+        style: {
+          background: "linear-gradient(90deg, rgba(163,27,15,1) 0%, rgba(255,98,0,1) 100%)",
+        },
+        offset: {
+          x: 300,
+          y: 30 
+        },
+        gravity: 'bottom'
+    }).showToast();
   }
 
   if (!daysInput || isNaN(daysInput) || daysInput < 1) {
     errors.push(`Ingrese una cantidad de días válida.`);
+    Toastify({
+        text: `Ingrese una cantidad de días válida.`,
+        duration: 3000,
+        stopOnFocus: true,
+        close: true,
+        style: {
+          background: "linear-gradient(90deg, rgba(163,27,15,1) 0%, rgba(255,98,0,1) 100%)",
+        },
+        offset: {
+          x: 300,
+          y: 30 
+        },
+        gravity: 'bottom'
+    }).showToast();
   }
 
   if (voucher) {
     voucherReturn = applyVoucher(voucher);
     if (!voucherReturn) {
       clearMsj(false,true);
+      Toastify({
+          text: `No encontramos el cupón ingresado.`,
+          duration: 3000,
+          stopOnFocus: true,
+          close: true,
+          style: {
+            background: "linear-gradient(90deg, rgba(163,27,15,1) 0%, rgba(255,98,0,1) 100%)",
+          },
+          offset: {
+            x: 300,
+            y: 30 
+          },
+          gravity: 'bottom'
+      }).showToast();
       errors.push(`No encontramos el cupón ingresado.`);
     }
   }
@@ -62,12 +119,23 @@ function formValidate(event) {
 
     if (voucherReturn) {
       addMsj(voucherReturn, true);
+      Toastify({
+          text: voucherReturn,
+          duration: 3000,
+          stopOnFocus: true,
+          close: true,
+          style: {
+            background: "linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%)",
+          },
+          offset: {
+            x: 300,
+            y: 30
+          },
+          gravity: 'bottom'
+      }).showToast();
     } else {
       addMsj(
-        "Reservó correctamente " +
-          finalQty +
-          " vehiculos por un total de $" +
-          finalTotal,
+        `Reservó correctamente ${finalQty} vehiculos por un total de \$${finalTotal}`,
         true
       );
     }
@@ -85,26 +153,27 @@ function saveThis(name, quantityInput, daysInput, dayprice, total) {
     new Reservation(id, name, quantityInput, daysInput, dayprice, total)
   );
   console.log(
-    "Se agregó a tu carrito " +
-      quantityInput +
-      " " +
-      name +
-      " por " +
-      daysInput +
-      " días. Total parcial: $" +
-      total
+    `Se agregó a tu carrito ${quantityInput} ${name} por ${daysInput} días. Total parcial: \$${total}`
   );
   addMsj(
-    "Se agregó a tu carrito " +
-      quantityInput +
-      " " +
-      name +
-      " por " +
-      daysInput +
-      " días. Total parcial: $" +
-      total,
+    `Se agregó a tu carrito ${quantityInput} ${name} por ${daysInput} días. Total parcial: \$${total}`,
     false
   );
+  Toastify({
+      text: `Se agregó a tu carrito ${quantityInput} ${name} por ${daysInput} días. Total parcial: \$${total}`,
+      duration: 3000,
+      stopOnFocus: true,
+      close: true,
+      style: {
+        background: "linear-gradient(to right, rgb(99 181 79), rgb(150, 201, 61))",
+      },
+      offset: {
+        x: 300, 
+        y: 30 
+      },
+      gravity: 'bottom'
+  }).showToast();
+
   console.log(arrayReservations);
   finalQty = arrayReservations.reduce((a, b) => a + b["quantity"], 0);
   finalTotal = arrayReservations.reduce((a, b) => a + b["total"], 0);
