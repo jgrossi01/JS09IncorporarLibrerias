@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const rentItBtn = document.getElementsByClassName("rentItBtn");
 
   createLi();
-  loadCards();
+//  loadCards();
   loadExistingValues();
   
   // Carga en el formulario el vehiculo seleccionado en las cards y redirige arriba 
@@ -24,7 +24,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
       bookingForm.scrollIntoView(true);
     });
   });
-
 });
 
 // Cuando se deja de escribir se guarda el nuevo valor en el storage
@@ -52,9 +51,5 @@ bookingForm.addEventListener("submit", formValidate);
 function nextIndexOf(array) {
   return array.length + 1;
 }
-
-
-
-
 
 export { nextIndexOf };
